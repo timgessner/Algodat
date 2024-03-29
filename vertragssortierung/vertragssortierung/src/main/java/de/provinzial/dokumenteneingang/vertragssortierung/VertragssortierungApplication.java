@@ -14,7 +14,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import de.provinzial.dokumenteneingang.vertragssortierung.Services.RepositoryService;
 import de.provinzial.dokumenteneingang.vertragssortierung.Services.VersicherungsnehmerService;
 import de.provinzial.dokumenteneingang.vertragssortierung.data.PvBSatzvertragstabelle;
-import de.provinzial.dokumenteneingang.vertragssortierung.data.sortierteVertraege;
+import de.provinzial.dokumenteneingang.vertragssortierung.data.sortiertevertraege;
 import de.provinzial.dokumenteneingang.vertragssortierung.data.PvBVersicherungsnehmer;
 
 @SpringBootApplication
@@ -48,23 +48,24 @@ public class VertragssortierungApplication implements CommandLineRunner{
 			versicherungsnehmerMap.put(vn.getversicherungsnehmerID(), vn);
 		}
 
-		List<sortierteVertraege> sortierteVertraege = verbinden(vertraege, versicherungsnehmerMap);
+		List<sortiertevertraege> sortierteVertraege = verbinden(vertraege, versicherungsnehmerMap);
 
 
-		sortierteVertraege[] sortierteVertraegeArray = new sortierteVertraege[versicherungsnehmer.size()];
+		sortiertevertraege[] sortierteVertraegeArray = new sortiertevertraege[versicherungsnehmer.size()];
 		sortierteVertraegeArray = sortierteVertraege.toArray(sortierteVertraegeArray);
 
 
 		sortierungService.sort(sortierteVertraegeArray, 0, versicherungsnehmer.size() - 1);
 
 		printArray(sortierteVertraegeArray);
+		repositoryService.pushSortierteVertraege(sortierteVertraegeArray);
 	}
 
-	public List<sortierteVertraege> verbinden(List<PvBSatzvertragstabelle> vertraegeListe, Map<Long, PvBVersicherungsnehmer> versicherungsnehmer) {
+	public List<sortiertevertraege> verbinden(List<PvBSatzvertragstabelle> vertraegeListe, Map<Long, PvBVersicherungsnehmer> versicherungsnehmer) {
         // Verbinde Verträge mit Versicherungsnehmer-Informationen
-        List<sortierteVertraege> verbundeneListe = vertraegeListe.stream().map(vertrag -> {
+        List<sortiertevertraege> verbundeneListe = vertraegeListe.stream().map(vertrag -> {
             PvBVersicherungsnehmer vn = versicherungsnehmer.get(vertrag.getVersicherungsnehmerID());
-            sortierteVertraege sv = new sortierteVertraege();
+            sortiertevertraege sv = new sortiertevertraege();
             sv.setVertragsNummer(vertrag.getVertragsNummer());
             sv.setVersicherungsnehmerID(vertrag.getVersicherungsnehmerID());
             sv.setNachname(vn.getNachname());
@@ -77,7 +78,7 @@ public class VertragssortierungApplication implements CommandLineRunner{
 	}
 
 	    // Hilfsmethode zum Drucken des Arrays von Strings
-		static void printArray(sortierteVertraege arr[]) {
+		static void printArray(sortiertevertraege arr[]) {
 			int n = arr.length;
 			for (int i = 0; i < n; ++i)
 				System.out.print("{" + arr[i].toString() + "} + ");

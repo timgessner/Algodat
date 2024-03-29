@@ -1,12 +1,15 @@
 package de.provinzial.dokumenteneingang.vertragssortierung.data;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class sortierteVertraege {
+public class sortiertevertraege {
     
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long sortierID;
     private Long vertragsnummer;
     private Long versicherungsnehmerID;

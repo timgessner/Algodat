@@ -1,5 +1,6 @@
 package de.provinzial.dokumenteneingang.vertragssortierung.Services;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import de.provinzial.dokumenteneingang.vertragssortierung.Repository.Versicherun
 import de.provinzial.dokumenteneingang.vertragssortierung.Repository.VertragsRepository;
 import de.provinzial.dokumenteneingang.vertragssortierung.data.PvBSatzvertragstabelle;
 import de.provinzial.dokumenteneingang.vertragssortierung.data.PvBVersicherungsnehmer;
-import de.provinzial.dokumenteneingang.vertragssortierung.data.sortierteVertraege;
+import de.provinzial.dokumenteneingang.vertragssortierung.data.sortiertevertraege;
 
 @Service
 public class RepositoryService {
@@ -39,10 +40,11 @@ public class RepositoryService {
         return versicherungsnehmer;
     }
 
-    public void pushSortierteVertraege(List<sortierteVertraege> sortierteVertraeges) {
+    public void pushSortierteVertraege(sortiertevertraege[] sortierteVertraeges) {
 
         sortierteVertraegeRepository.deleteAll();
-        sortierteVertraegeRepository.saveAll(sortierteVertraeges);
+
+        sortierteVertraegeRepository.saveAll(Arrays.asList(sortierteVertraeges));
     }
 
 

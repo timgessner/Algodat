@@ -103,3 +103,7 @@ select pb1_0.vertrags_nummer,pb1_0.anwendung,pb1_0.anwendung_mig,pb1_0.anwendung
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
 	at de.provinzial.dokumenteneingang.vertragssortierung.VertragssortierungApplication.main(VertragssortierungApplication.java:30)
+2024-03-29 11:12:27.501121+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabelle "SORTIERTE_VERTRAEGE" nicht gefunden
+Table "SORTIERTE_VERTRAEGE" not found; SQL statement:
+select sv1_0.sortierid,sv1_0.nachname,sv1_0.vorname,sv1_0.versicherungsnehmerid,sv1_0.vertragsnummer from sortierte_vertraege sv1_0 [42102-224]

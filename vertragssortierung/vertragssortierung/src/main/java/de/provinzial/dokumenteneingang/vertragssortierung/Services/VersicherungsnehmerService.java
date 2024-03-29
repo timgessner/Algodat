@@ -2,21 +2,21 @@ package de.provinzial.dokumenteneingang.vertragssortierung.Services;
 
 import org.springframework.stereotype.Service;
 
-import de.provinzial.dokumenteneingang.vertragssortierung.data.sortierteVertraege;
+import de.provinzial.dokumenteneingang.vertragssortierung.data.sortiertevertraege;
 
 @Service
 public class VersicherungsnehmerService {
     // Methode zum Zusammenführen zweier Teilarrays von arr[].
     // Das erste Teilarray ist arr[l..m]
     // Das zweite Teilarray ist arr[m+1..r]
-    private void merge(sortierteVertraege  arr[], int l, int m, int r) {
+    private void merge(sortiertevertraege  arr[], int l, int m, int r) {
         // Größen der beiden Teilarrays finden
         int n1 = m - l + 1;
         int n2 = r - m;
 
         // Temporäre Arrays erstellen
-        sortierteVertraege L[] = new sortierteVertraege[n1];
-        sortierteVertraege R[] = new sortierteVertraege[n2];
+        sortiertevertraege L[] = new sortiertevertraege[n1];
+        sortiertevertraege R[] = new sortiertevertraege[n2];
 
         // Daten in temporäre Arrays kopieren
         for (int i = 0; i < n1; ++i)
@@ -60,7 +60,7 @@ public class VersicherungsnehmerService {
     }
         // Hauptfunktion, die den MergeSort-Algorithmus implementiert.
     // Hier wird MergeSort auf ein Array von Strings angewendet, um sie alphabetisch zu sortieren.
-    public void sort(sortierteVertraege arr[], int l, int r) {
+    public void sort(sortiertevertraege arr[], int l, int r) {
         if (l < r) {
             // Finde die Mitte des Arrays
             int m = l + (r - l) / 2;
